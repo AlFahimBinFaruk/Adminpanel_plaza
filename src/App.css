@@ -1,38 +1,39 @@
-.App {
-  text-align: center;
+/* AdminPanel.css */
+.admin-panel {
+  display: flex;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.custom-sidebar {
+  width: 15%;
+  /* Sidebar occupies 30% of the screen */
+  background-color: rgba(var(--mdb-light-rgb), var(--mdb-bg-opacity)) !important;
+  /* Example background color */
+  /* Example text color */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-content {
+  flex: 1;
+  /* Main content occupies remaining space */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.custom-navbar {}
+
+.custom-content {
+  flex: 1;
+  /* Content occupies remaining space */
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.custom-sidebar-menus a h6 {
+  color: black !important;
+  padding: 1rem;
+}
+
+.custom-sidebar-menus a h6:hover {
+  color: green !important;
+  cursor: pointer;
+  background-color: #80808052;
 }
