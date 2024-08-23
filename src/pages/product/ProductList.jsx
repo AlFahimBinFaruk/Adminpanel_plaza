@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
 import { MDBBtn, MDBTable, MDBTableHead, MDBTableBody, MDBIcon } from 'mdb-react-ui-kit';
 import SingleProductRow from '../../components/SingleProductRow';
-import { useGetProductListQuery } from "../../services/product_api";
+import { useDeleteProductMutation, useGetProductListQuery } from "../../services/product_api";
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 export default function ProductList() {
     const [currentPage, setCurrentPage] = useState(1);
     const { data: details, isLoading, error } = useGetProductListQuery({ page: currentPage });
+    const [deleteProduct]=useDeleteProductMutation();
     if (isLoading) {
         return <div>Loading...</div>;
     }
 
-    
+
 
     if (error) {
         return <div>Error fetching user products</div>;
     }
+
+    const handleDelete = async (id) => {
+        // console.log("del ",id);
+        try {
+            await deleteProduct(id).unwrap();
+            toast.success('Product deleted successfully');
+            
+
+        } catch (err) {
+            toast.error(err.data?.msg || 'Failed to delete product');
+        }
+    };
+
+
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -71,8 +87,10 @@ export default function ProductList() {
                             </td>
 
                             <td>
-                                <MDBIcon far icon="edit" role="button" className="me-2" color="warning" />
-                                <MDBIcon far icon="trash-alt" role="button" color="danger" />
+                                <Link to={`/update-product/${data._id}`}>
+                                    <MDBIcon far icon="edit" role="button" className="me-2" color="warning" />
+                                </Link>
+                                <MDBIcon far icon="trash-alt" role="button" color="danger" onClick={()=>handleDelete(data._id)}/>
                             </td>
                         </tr>
                     )) : <p>No product to show</p>}

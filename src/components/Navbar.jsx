@@ -17,6 +17,11 @@ import {
 export default function Navbar() {
     const [openNavRight, setOpenNavRight] = useState(false);
 
+    const handleLogout=()=>{
+        localStorage.removeItem("token");
+        window.location.assign("/login");
+    }
+
     return (
         <MDBNavbar expand='lg' light bgColor='light'>
             <div className="ms-auto">
@@ -41,7 +46,7 @@ export default function Navbar() {
                             </MDBNavbarItem>
 
                             <MDBNavbarItem>
-                                <MDBNavbarLink active aria-current='page' href='#'>
+                                <MDBNavbarLink active aria-current='page' onClick={handleLogout}>
                                     Logout
                                 </MDBNavbarLink>
                             </MDBNavbarItem>

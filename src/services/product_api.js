@@ -21,6 +21,7 @@ export const product_api = createApi({
             return headers;
         }
     }),
+    tagTypes:["Product"],
     endpoints: (builder) => ({
 
 
@@ -28,12 +29,14 @@ export const product_api = createApi({
 
 
         getProductList: builder.query({
-            query: (page) => `/product/all?page${page}`
+            query: (page) => `/product/all?page${page}`,
+            providesTags:["Product"]
         }),
         getProductDetails: builder.query({
             query: (id) => ({
                 url: `/product/details/${id}`
-            })
+            }),
+            providesTags:["Product"]
         }),
 
         addNewProduct: builder.mutation({
@@ -41,7 +44,8 @@ export const product_api = createApi({
                 url: "product/add-new",
                 method: "POST",
                 body: data
-            })
+            }),
+            invalidatesTags:["Product"]
         }),
 
         updateProduct: builder.mutation({
@@ -49,14 +53,16 @@ export const product_api = createApi({
                 url: `/product/update/${id}`,
                 method: "PUT",
                 body: data
-            })
+            }),
+            invalidatesTags:["Product"]
         }),
 
         deleteProduct: builder.mutation({
             query: (id) => ({
                 url: `/product/delete/${id}`,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags:["Product"]
         })
     }),
 });
