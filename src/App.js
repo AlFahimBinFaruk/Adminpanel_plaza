@@ -16,6 +16,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the Toast CSS
 import { useGetMyProfileQuery } from './services/user_api';
 import UpdateCategory from './pages/category/UpdateCategory';
+import OrderList from './pages/order/OrderList';
+import ManageOrder from './pages/order/ManageOrder';
 
 function App() {
   const { data: details, error, isLoading } = useGetMyProfileQuery();
@@ -56,6 +58,10 @@ function App() {
                   <Route path="/user-list" element={<UserList />} />
                   <Route path="/manage-user/:user_id" element={<ManageUser />} />
                   <Route path="/profile" element={<Profile />} />
+
+                  {/* order */}
+                  <Route path="/order-list" element={<OrderList />} />
+                  <Route path="/manage-order/:order_id" element={<ManageOrder />} />
                 </Routes>
               </div>
             </div>

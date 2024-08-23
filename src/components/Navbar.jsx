@@ -7,11 +7,7 @@ import {
     MDBNavbarItem,
     MDBNavbarLink,
     MDBNavbarToggler,
-    MDBCollapse,
-    MDBDropdown,
-    MDBDropdownMenu,
-    MDBDropdownToggle,
-    MDBDropdownItem,
+    MDBCollapse
 } from 'mdb-react-ui-kit';
 
 export default function Navbar() {

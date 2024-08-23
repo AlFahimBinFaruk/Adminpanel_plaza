@@ -10,6 +10,7 @@ export default function Sidebar() {
                 <Link to="/user-list"><h6>User List</h6></Link>
                 <Link to="/category-list"><h6>Category List</h6></Link>
                 <Link to="/product-list"><h6>Product List</h6></Link>
+                <Link to="/order-list"><h6>Order List</h6></Link>
             </div>
         </div>
     )

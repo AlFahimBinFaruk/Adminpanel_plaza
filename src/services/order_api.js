@@ -21,6 +21,7 @@ export const order_api = createApi({
             return headers;
         }
     }),
+    tagTypes:["Order"],
     endpoints: (builder) => ({
 
 
@@ -28,12 +29,14 @@ export const order_api = createApi({
 
 
         getOrderList: builder.query({
-            query: () => '/order/all'
+            query: (page) => `/order/all?page=${page}`,
+            providesTags:["Order"]
         }),
         getOrderDetails: builder.query({
             query: (id) => ({
                 url: `/order/details/${id}`
-            })
+            }),
+            providesTags:["Order"]
         }),
 
        
@@ -43,14 +46,16 @@ export const order_api = createApi({
                 url: `/order/update/${id}`,
                 method: "PUT",
                 body: data
-            })
+            }),
+            invalidatesTags:["Order"]
         }),
 
         deleteOrder: builder.mutation({
             query: (id) => ({
                 url: `/order/delete/${id}`,
                 method: "DELETE"
-            })
+            }),
+            invalidatesTags:["Order"]
         })
     }),
 });
